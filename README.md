@@ -120,15 +120,19 @@ then `termux-reload-settings`:
 - `← ↓ ↑ →` for navigation, `KEYBOARD` toggles the soft keyboard, `DRAWER` opens the
   Termux sidebar, `-` swipe-up gives `|`.
 
-**On-screen keyboard** — opencode's TUI enables mouse mode by default, so on a touch
-screen a tap on the prompt moves the cursor instead of popping up the soft keyboard.
-Copy [`tui.json`](./tui.json) to `~/.config/opencode/tui.json` to disable mouse mode —
-tapping the input box then opens the keyboard:
+**On-screen keyboard** — keep mouse mode ON so touch taps still work (click-to-expand,
+answering questions, selecting items). With mouse capture active, Termux sends taps as
+clicks and does not auto-open the keyboard — pop it up with the `KEYBOARD` extra key
+or `Ctrl+Alt+K`. Copy [`tui.json`](./tui.json) to `~/.config/opencode/tui.json` to make
+mouse mode explicit:
 
 ```bash
 mkdir -p ~/.config/opencode
 cp tui.json ~/.config/opencode/tui.json
 ```
+
+Disabling mouse mode instead (`"mouse": false`) makes any tap open the keyboard, but
+then taps can no longer click things in the TUI.
 
 **Storage access** — run `termux-setup-storage` to work with `~/storage` (downloads,
 shared folders), then open opencode in those directories.
@@ -170,7 +174,7 @@ so it runs in plain Termux with zero hacks.
 ## Files
 
 - [`opencode.json`](./opencode.json) — sample config
-- [`tui.json`](./tui.json) — disables mouse mode so taps pop up the soft keyboard
+- [`tui.json`](./tui.json) — keeps mouse mode on so touch taps click; keyboard via KEYBOARD key
 - [`termux.properties`](./termux.properties) — extra-keys block for the TUI
 
 ## Credits
